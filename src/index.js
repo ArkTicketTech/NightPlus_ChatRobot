@@ -3,12 +3,25 @@ const config = require('wechaty').config
 const Contact = require('wechaty').Contact
 const log = require('wechaty').log
 const Wechaty = require('wechaty').Wechaty
+// const Room = require('wechaty').Room
 
 
 const bot = Wechaty.instance({ profile: config.DEFAULT_PROFILE })
+// const targetRoom = await Room.find({ topic: "微信测试机器人" })
+
+function manageDingRoom() {
+    if (!targetRoom) {
+      log.warn('Bot', 'there is no room topic ding(yet)')
+      return
+    }
+}
 
 bot
-.on('login'	  , user => log.info('Bot', `${user.name()} logined`))
+.on('login'	  , user => function() {
+      setTimeout(manageDingRoom.bind(this), 3000)
+      log.info('Bot', `${user.name()} logined`)
+    }
+)
 .on('logout'	, user => log.info('Bot', `${user.name()} logouted`))
 .on('error'   , e => log.info('Bot', 'error: %s', e))
 .on('scan', (url, code) => {
@@ -62,6 +75,16 @@ bot
   console.log(logMsg)
   fileHelper.say(logMsg)
 
+})
+.on('message', async (message) => {
+  const room  = message.room()
+  const sender  = message.from()
+  const content = message.content()
+  room.say(sender.name() + "念了两句诗")
+})
+.on('room-join', (room, inviteeList, inviter) => {
+  const nameList = inviteeList.map(c => c.name()).join(',')
+  console.log(`Room ${room.topic()} got new member ${nameList}, invited by ${inviter}`)
 })
 
 bot.init()
