@@ -6,6 +6,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "@types/raven": "^2.1.0",
+    "@types/selenium-webdriver": "^3.0.4",
     "qrcode-terminal": "^0.11.0",
     "ts-node": "^3.3.0",
     "typescript": "^2.4.2",
@@ -18,6 +20,7 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "nodemon": "^1.11.0",
-    "ts-node": "^3.3.0"
+    "ts-node": "^3.3.0",
+    "typescript": "^2.4.2"
   }
 }
