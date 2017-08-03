@@ -21,6 +21,12 @@ node src/index.js
 
 #### Using
 
+**TODO**
+- export module simplify.
+	- bad: `validator.ValidateMiddleware()`
+	- good: `validator()`
+- ...
+
 - install [mongoDB](https://github.com/mongodb/mongo)
 
 ```shell
