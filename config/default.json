@@ -1,0 +1,33 @@
+{
+	"app": {
+		"port": 3000
+	},
+	"jwt": {
+		"secret": "n405G^LF55Bp"
+	},
+	"db": {
+		"options": {
+			"host": "localhost",
+			"user": "",
+			"pass": ""
+		},
+		"database": "dev-airplake"
+	},
+	"log": {
+    "appenders": {
+      "chatrobot": {
+        "type": "file",
+        "filename": "log/http.log",
+        "maxLogSize": 20480,
+        "backups": 3,
+        "category": "http"
+      }
+    },
+    "categories": { 
+      "default": { 
+        "appenders": ["chatrobot"],
+        "level": "error"
+        }
+    }
+  }
+}
