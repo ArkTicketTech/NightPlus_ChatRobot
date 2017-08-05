@@ -21,12 +21,6 @@ node src/index.js
 
 #### Using
 
-**TODO**
-- export module simplify.
-	- bad: `validator.ValidateMiddleware()`
-	- good: `validator()`
-- ...
-
 - install [mongoDB](https://github.com/mongodb/mongo)
 
 ```shell
@@ -45,19 +39,4 @@ curl --request POST \
   --data '{\n	"username": "airplake",\n	"password": "123"\n}'
 ```
 
-- create a book
-```
-curl --request POST \
-  --url http://localhost:3000/books \
-  --header 'authorization: Bearer [TOKEN]' \
-  --header 'content-type: application/json' \
-  --data '{\n	"id": 1,\n	"title": "airplake",\n	"price": 10\n}'
-```
-
-- get book via id
-```
-curl --request GET \
-  --url http://localhost:3000/books/1 \
-  --header 'authorization: Bearer [TOKEN]' \
-  --header 'content-type: application/json'
-```
+- Books RESTful api
