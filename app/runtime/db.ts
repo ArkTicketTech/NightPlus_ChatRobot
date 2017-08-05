@@ -1,4 +1,4 @@
-interface DB {
+export interface DB {
 	[key: string]: any
 }
 
@@ -32,7 +32,7 @@ const models: string[] = fs.readdirSync(modelsPath)
 const db: DB = {}
 
 for (let model of models) {
-  if (model.startsWith('.')) {
+  if (model.startsWith('.') || model.endsWith('.ts')) {
     continue
   }
   const modelName = path.basename(model).split('.')[0]

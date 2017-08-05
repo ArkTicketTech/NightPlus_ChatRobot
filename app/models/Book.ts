@@ -1,9 +1,9 @@
 import * as mongoose from 'mongoose'
 
 const baseSchema = {
-  id: Number,
   title: String,
-  price: Number
+  price: Number,
+  isDeleted: { type: Boolean, default: false }
 }
 
 const schema = new mongoose.Schema(baseSchema, {

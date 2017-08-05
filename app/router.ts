@@ -1,37 +1,61 @@
 import * as express from 'express'
 import * as joi from 'joi'
 import * as jwt from 'express-jwt'
-import * as validator from './middlewares/ValidateMiddleware'
-const router = express.Router()
+import { validator } from './middlewares/ValidateMiddleware'
+const router: express.Router = express.Router();
 
-import * as getBook from './routes/books/get'
-import * as createBook from './routes/books/post'
-import * as token from './routes/token/post'
+import { books } from './routes/books'
+import { token } from './routes/token'
 
 router.post('/token',
 // should be fixed
-validator.ValidateMiddleware({
+validator({
 	body: joi.object().keys({
 		username: joi.string().required(),
 		password: joi.string().required()
 	})
 }), token.post)
 
-router.post('/books',
-validator.ValidateMiddleware({
-	body: joi.object().keys({
-		id: joi.number().required(),
-		title: joi.string(),
-		price: joi.number()
+router.get('/books',
+validator({
+	query: joi.object().keys({
+		limit: joi.number(),
+		skip: joi.number()
 	})
-}), createBook.post)
+}), books.list)
+
+router.post('/books',
+validator({
+	body: joi.object().keys({
+		title: joi.string().required(),
+		price: joi.number().required()
+	})
+}), books.post)
 
 router.get('/books/:id',
-validator.ValidateMiddleware({
+validator({
 	params: joi.object().keys({
-		id: joi.number().required()
+		id: joi.string().hex().length(24).required()
 	})
-}), getBook.get)
+}), books.get)
+
+router.put('/books/:id',
+validator({
+	params: joi.object().keys({
+		id: joi.string().hex().length(24).required()
+	}),
+	body: joi.object().keys({
+		title: joi.string().required(),
+		price: joi.number().required()
+	})
+}), books.put)
+
+router.delete('/books/:id',
+validator({
+	params: joi.object().keys({
+		id: joi.string().hex().length(24).required()
+	})
+}), books.destroy)
 
 export {
 	router
