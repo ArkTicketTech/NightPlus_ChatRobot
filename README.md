@@ -1,25 +1,7 @@
 # NightPlus_ChatRobot
 NIGHT+ | 带领年轻人探索新潮夜生活的互动体验平台
 
-# Environment Setup
-
-```
-npm install
-npm install -g typings
-
-```
-
-# How to run
-
-```
-tsc
-node src/index.js
-### express server
-```
-
-----
-
-#### Using
+# Using
 
 - install [mongoDB](https://github.com/mongodb/mongo)
 
@@ -40,3 +22,53 @@ curl --request POST \
 ```
 
 - Books RESTful api
+
+
+# datebase schema
+
+```
+ userSchema = new Schema({
+     name: String,
+     region: String,
+     info: {}
+ })
+```
+
+```
+ roomSchema = new Schema({
+     name: String,
+     region: String,
+     userIds: []
+ })
+```
+
+```
+ msgSchema = new Schema({
+     from: {
+         userId: String
+     },
+     room: String,
+     content: String
+ })
+```
+
+```
+keywordSchema = new Schema({
+    keyword: String,
+    responseId: Number
+})
+```
+
+```
+ ruleSchema = new Schema({
+     name: String,
+     query: String,
+     responseId: String
+ })
+```
+
+```
+ responseResourceSchema = new Schema({
+     response: []
+ })
+```
