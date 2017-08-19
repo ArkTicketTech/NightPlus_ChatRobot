@@ -6,8 +6,7 @@ const Book = db.Book
 export function put(req: any, res: any, next: any) {
 	(async() => {
 		const _id = req.params.id
-		const title = req.body.title
-		const price = req.body.price
+		const { title, price } = req.body
 		const data = {
 			title,
 			price
