@@ -1,4 +1,4 @@
-interface Schema {
+export interface Schema {
 	query?: object,
 	body?: object,
 	params?: object,
@@ -8,13 +8,12 @@ interface Schema {
 import * as joi from 'joi'
 import Exception from '../libs/exception'
 
-export function ValidateMiddleware (schema: Schema) {
+export function validator (schema: Schema) {
   return (req: any, res: any, next: any) => {
     if (schema.body) {
       const result = joi.validate(req.body, schema.body)
       if (result.error) {
-				const msg = new Exception(2001, result.error.message)
-        return res.apiError()
+        return res.apiError(new Exception(2001, result.error.message))
       }
     }
     if (schema.params) {
