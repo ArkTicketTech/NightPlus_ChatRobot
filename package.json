@@ -5,7 +5,7 @@
     "serve": "babel -w src/ -d dist/ | nodemon --watch dist",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build-ts": "tsc",
-    "dev": "nodemon build/index.js"
+    "dev": "nodemon build/app/index.js"
   },
   "dependencies": {
     "bluebird": "^3.5.0",

@@ -25,7 +25,7 @@ mongoose.connection.on('error', (err) => {
 
 console.log(`数据库连接：${connectionStr}`)
 
-const modelsPath = path.join(process.cwd(), '/build/models')
+const modelsPath = path.join(process.cwd(), '/build/app/models')
 
 const models: string[] = fs.readdirSync(modelsPath)
 
